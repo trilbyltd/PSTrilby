@@ -5,9 +5,6 @@
 # Description:
 # Collection of generic reusable functions across backup servers
 
-# Include Hipchat Module
-# Import-Module D:\backup\hipchat\Publish-HipChatRoomMessage.psm1
-
 <#
 .SYNOPSIS
     Deletes files based on age
@@ -30,14 +27,12 @@
     Owner: Trilby Multimedia Limited
 #>
 
-
 function Delete-Files {
     Param(
         [string]$Path = "Help", # Specify a full valid path
-        [String]$Filefilter = "Help", # Set your file type, eg txt, bat, bak, 7z
-        [int]$Age = "Help" # Specify an number of days to clean as an integer
+        [string]$Filefilter = "Help", # Set your file type, eg txt, bat, bak, 7z
+        [int]$Age
         )
     Get-ChildItem $path -Recurse -Include $Filefilter | WHERE {($_.CreationTime -le $(Get-Date).AddDays(-$Age))} | Remove-Item -force
 }
-
-export-modulemember -function Delete-Files
+export module-member Delete-Files

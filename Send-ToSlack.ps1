@@ -20,16 +20,22 @@
     Owner: Trilby Multimedia Limited
 #>
 
-function Tell-Slack{
+function Send-ToSlack{
     Param(
-        [Parameter(Mandatory=$true)][string] $notificationPayload = "Help" #Accepts a valid JSON bundle
+        [Parameter(Mandatory=$true)][string] $Payload = "Help", #Accepts a valid JSON bundle
+        [switch]$Test
         )
-    
+    $endpoint = "https://hooks.slack.com/services/"
     # Set the Slack channel webhook URL
-    $slackURI="https://hooks.slack.com/services/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"
-    
+    if ($Test) {
+        # Testing channel
+        $slackURI= $endpoint + "T02QPLUHW/B051558TR/BS01Tp2OOAKhA7G9xJP7ELm2"
+    } else {	
+        # DevOps channel
+        $slackURI= $endpoint + "T02QPLUHW/B02R819DG/qYXQ6G0BYkvYqLAAuvT8Aftf"
+    }
     # Call a post function with a valid JSON payload
-    Invoke-RestMethod -Uri $slackURI -Method Post -Body $notificationPayload
+    Invoke-RestMethod -Uri $slackURI -Method Post -Body $Payload
 }
 
-export-modulemember -function Tell-Slack
+export-modulemember -function Send-ToSlack

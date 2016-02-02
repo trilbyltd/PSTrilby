@@ -13,7 +13,7 @@
     interpret any characters as escape sequences.
 .EXAMPLE
     C:\PS> 
-    Send-FTP "D:\backup\sites" -Type "7z" -Dest "remote\path\to"
+    Copy-ToFTP "D:\backup\sites" -Type "7z" -Dest "remote\path\to"
 .NOTES
     Author: Dominic Barnes
     Date:   2015-09-16   
@@ -21,7 +21,7 @@
 #>
 
 
-function Send-FTP {
+function Copy-ToFTP {
     Param(
         [string]$Path, 
         [string]$Type, 
@@ -77,4 +77,4 @@ function Send-FTP {
         Write-Debug "Done!"
  }
 
-export-modulemember -function Send-FTP
+export-modulemember -function Copy-ToFTP
