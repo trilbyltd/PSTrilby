@@ -1,10 +1,3 @@
-# Trilby Powershell Library
-# Owner: Trilby Multimedia Limited, 2015
-# Author: Dom Barnes
-# Date: 2015-06-17
-# Description:
-# Collection of generic reusable functions across backup servers
-
 <#
 .SYNOPSIS
     Grabs latest file in a folder
