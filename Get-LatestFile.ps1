@@ -30,8 +30,9 @@
 function Get-LatestFile {
     Param(
         [Parameter(Mandatory=$true)][string]$Path = "Help", # Specify a full valid path
-        [Parameter(Mandatory=$true)][string]$Type = "Help" # Set your file type, eg txt, bat, bak, 7z
+        [Parameter(Mandatory=$true)][string]$Type = "Help" # Set your file type, eg *.txt, *.bat, *.bak, *.7z
         )
-    Get-ChildItem $Path -Recurse -Include $Type | WHERE {($_.CreationTime -le $(Get-Date))}
+    $a = Get-ChildItem $Path -Recurse -Include $Type | Sort-Object LastAccessTime -Descending | Select-Object -First 1
+    return $a.FullName
 }
 export-modulemember -function Get-LatestFile
