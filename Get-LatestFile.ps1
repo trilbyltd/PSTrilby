@@ -7,9 +7,9 @@
 
 <#
 .SYNOPSIS
-    Deletes files based on age
+    Grabs latest file in a folder
 .DESCRIPTION
-    Deletes all files of a given type that are older than a given number of days
+    Grabs latest file in a folder
 .PARAMETER Path
     The path to the .
 .PARAMETER LiteralPath
@@ -20,19 +20,18 @@
     interpret any characters as escape sequences.
 .EXAMPLE
     C:\PS> 
-    Delete-Files -Path "D:\backup\sites\" -Filefilter "*.bak" -Age 3
+    TODO
 .NOTES
     Author: Dominic Barnes
-    Date:   2015-09-16   
+    Date:   2016-02-02
     Owner: Trilby Multimedia Limited
 #>
 
-function Delete-Files {
+function Get-LatestFile {
     Param(
-        [string]$Path = "Help", # Specify a full valid path
-        [string]$Filefilter = "Help", # Set your file type, eg txt, bat, bak, 7z
-        [int]$Age
+        [Parameter(Mandatory=$true)][string]$Path = "Help", # Specify a full valid path
+        [Parameter(Mandatory=$true)][string]$Type = "Help" # Set your file type, eg txt, bat, bak, 7z
         )
-    Get-ChildItem $path -Recurse -Include $Filefilter | WHERE {($_.CreationTime -le $(Get-Date).AddDays(-$Age))} | Remove-Item -force
+    Get-ChildItem $Path -Recurse -Include $Type | WHERE {($_.CreationTime -le $(Get-Date))}
 }
-export-modulemember -function Delete-Files
+export-modulemember -function Get-LatestFile
