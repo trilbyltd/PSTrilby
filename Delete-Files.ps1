@@ -26,6 +26,6 @@ function Delete-Files {
         [string]$Filefilter = "Help", # Set your file type, eg txt, bat, bak, 7z
         [int]$Age
         )
-    Get-ChildItem $path -Recurse -Include $Filefilter | WHERE {($_.CreationTime -le $(Get-Date).AddDays(-$Age))} | Remove-Item -force
+    Get-ChildItem $path -Filter $Filefilter | WHERE {($_.CreationTime -le $(Get-Date).AddDays(-$Age))} | Remove-Item -force
 }
 export-modulemember -function Delete-Files
