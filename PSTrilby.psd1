@@ -59,7 +59,8 @@ NestedModules = @(
                   ".\Send-ToSlack.ps1", 
                   ".\Send-ToFTP.ps1", 
                   ".\Delete-Files.ps1",
-                  ".\Get-LatestFile.ps1")
+                  ".\Get-LatestFile.ps1",
+                  ".\Write-Log.ps1")
 
 # Functions to export from this module
 FunctionsToExport = '*'
